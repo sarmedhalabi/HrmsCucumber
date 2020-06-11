@@ -25,7 +25,7 @@ public class MultipleCredentials extends CommonMethods {
 	@Then("{string} is successfully logged in")
 	public void is_successfully_logged_in(String string) {
 	   String actual= login.welcomeDisplayed.getText();
-	   String expected= "welcome"+string;
+	   String expected= "Welcome "+string;
 	   Assert.assertEquals("names do not match", expected, actual);
 	}
 	

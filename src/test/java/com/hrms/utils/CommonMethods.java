@@ -1,7 +1,7 @@
 package com.hrms.utils;
 
 import java.io.File;
-import java.io.IOException;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -62,6 +62,7 @@ public class CommonMethods extends PageInitializer {
 		String actualValue;
 		for (WebElement el : radioOrcheckbox) {
 			actualValue = el.getAttribute("value").trim();
+
 			if (el.isEnabled() && actualValue.equals(value)) {
 				el.click();
 				break;
@@ -273,19 +274,22 @@ public class CommonMethods extends PageInitializer {
 	 * @param fileName
 	 */
 
-	public static String TakesScreenshot(String filename) {
-		TakesScreenshot ts = (TakesScreenshot) driver;
-		File screen = ts.getScreenshotAs(OutputType.FILE);
-		String destinationFile = Constants.SCREENSHOT_FILEPATH + filename +getTimeStamp()+ ".png";
 
+	public static byte[] TakeScreenshot(String filename) {
+		TakesScreenshot ts=(TakesScreenshot)driver;
+		byte[] picBytes=ts.getScreenshotAs(OutputType.BYTES);
+		
+		File file=ts.getScreenshotAs(OutputType.FILE);
+		
+		String destinationFile= Constants.SCREENSHOT_FILEPATH+filename+getTimeStamp()+".png";
+		
 		try {
-			FileUtils.copyFile(screen, new File(destinationFile));
-		} catch (IOException e) {
-
-			e.printStackTrace();
+		FileUtils.copyFile(file, new File(destinationFile)) ;
+		}catch(Exception e) {
+			System.out.println("Cannot take screenshot");
 		}
-		return destinationFile;
-	}
+		return picBytes;
+		}
 
 	public static String getTimeStamp() {
 		Date date = new Date();

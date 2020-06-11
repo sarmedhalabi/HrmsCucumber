@@ -28,7 +28,7 @@ Feature: Add New Employee
     Then new employee with login credentials should be displayed successfullly
 
   # to perform Data driven test <ddt> we use scenario outline with Examples
-  @inProgress
+  @smoke
   Scenario Outline: Adding multiple employees
     When user enter employee "<FirstName>","<MiddleName>" and "<LastName>"
     And click on save button
@@ -36,16 +36,21 @@ Feature: Add New Employee
 
     Examples: 
       | FirstName | MiddleName | LastName |
-      | Faisal    | F          | sahki    |
-      | Sarmed    | G          | Halabi   |
-      | Yunus     | Emre       | Yaut     |
+      | Kathem    | F          | Drake   |
+      | Saif    | G          | Halabi   |
+      | Yunusi    | Emree       | Yaut     |
 
   # adding multiple employees using cucumber Datatable
-  @dataTable
+  @Regression
   Scenario: Adding multiple employees
     When user enter employee details and click on save then employee is added
     |FirstName|MiddleName|LastName|
     |John|J| Snith|
     |Jane|J| Snith|
+    
+    @Excel
+    Scenario: add new employee
+    When user import excel sheet "Employee" to add new employee
+    Then new employee is displayed
 
    

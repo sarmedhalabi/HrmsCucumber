@@ -5,8 +5,11 @@ import java.util.Map;
 
 import org.junit.Assert;
 
+import com.hrms.pages.AddEmployee;
 import com.hrms.utils.CommonMethods;
 import com.hrms.utils.ConfigsReader;
+import com.hrms.utils.Constants;
+import com.hrms.utils.ExcelUtility;
 
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Given;
@@ -36,7 +39,7 @@ public class AddNewEmployee extends CommonMethods{
 
 	@When("enter employee first name and last name")
 	public void enter_employee_first_name_and_last_name() {
-	   sendText(addemployee.firstName, "David");
+	   sendText(addemployee.firstName, "Davis");
 	   sendText(addemployee.lastName,"Beckham");
 	   
 	}
@@ -49,7 +52,7 @@ public class AddNewEmployee extends CommonMethods{
 
 	@Then("new employee is added successfully")
 	public void new_employee_is_added_successfully() {
-	    String expectedName="David Beckham";
+	    String expectedName="Davis Beckham";
 	    String actualName= addemployee.nameDisplayed.getText();
 	    Assert.assertEquals("Names do not match", expectedName, actualName);
 	  
@@ -69,8 +72,8 @@ public class AddNewEmployee extends CommonMethods{
 
 	@When("enter username and password")
 	public void enter_username_and_password() {
-	    sendText(addemployee.username, "davidbeckham");
-	    sendText(addemployee.password, "Hum@nhrm123!!");
+	    sendText(addemployee.username, "davidbeckham23");
+	    sendText(addemployee.password, "Hum@nhrm123!!!");
 	}
 
 	@When("confirm password")
@@ -80,7 +83,7 @@ public void confirm_password() {
 
 	@Then("new employee with login credentials should be displayed successfullly")
 	public void new_employee_with_login_credentials_should_be_displayed_successfullly() {
-		String expectedName="David Beckham";
+		String expectedName="Davis Beckham";
 	    String actualName= addemployee.nameDisplayed.getText();
 	    Assert.assertEquals("Names do not match", expectedName, actualName);
 	}
@@ -124,7 +127,30 @@ public void confirm_password() {
 	   
 	}
 	public void employee_is_added() {
-		System.out.println("employee is added");
+		System.out.println("employee is added");}
+		
+		@When("user import excel sheet {string} to add new employee")
+		public void user_import_excel_sheet_to_add_new_employee(String string) {
+			List<Map<String,String>> excelmap=ExcelUtility.excelIntoListOfMaps(Constants.TESTDATA_FILEPATH, string);
+			for(Map<String,String> map:excelmap) {
+				
+				sendText(addEmp.firstName, map.get("FirstName"));
+				sendText(addEmp.middleName, map.get("MiddleName"));
+				sendText(addEmp.lastName, map.get("LastName"));
+				jsClick(addEmp.btnSave);
+				jsClick(dashboard.addEmp);
+				sleep(2);
+		   
+		}}
+
+		@Then("new employee is displayed")
+		public void new_employee_is_displayed() {
+			System.out.println(" employee is added");
+		    
+		}
+
+
+
 	    
 	}
 
@@ -141,4 +167,4 @@ public void confirm_password() {
 
 
 
-}
+
