@@ -4,6 +4,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import com.hrms.utils.ConfigsReader;
@@ -16,18 +17,25 @@ public class BaseClass {
 	public static WebDriver driver;
 
 	public static WebDriver setUp() {
-		
-		ConfigsReader.readProperties(Constants.CONFIGURATION_FILEPATH);
 
+		ConfigsReader.readProperties(Constants.CONFIGURATION_FILEPATH);
+		String headless = ConfigsReader.getProperty("headless");
 		switch (ConfigsReader.getProperty("browser").toLowerCase()) {
 
 		case "chrome":
-			//System.setProperty("webdriver.chrome.driver", Constants.CHROME_DRIVER_PATH);
+			// System.setProperty("webdriver.chrome.driver", Constants.CHROME_DRIVER_PATH);
 			WebDriverManager.chromedriver().setup();
-			driver = new ChromeDriver();
+			ChromeOptions cOptions = new ChromeOptions();
+			if (headless.equalsIgnoreCase("true")) {
+				cOptions.setHeadless(true);
+				driver = new ChromeDriver(cOptions);
+			} else {
+				driver = new ChromeDriver(cOptions);
+			}
+			// driver = new ChromeDriver();
 			break;
 		case "firefox":
-			//System.setProperty("webdriver.gecko.driver", Constants.GECKO_DRIVER_PATH);
+			// System.setProperty("webdriver.gecko.driver", Constants.GECKO_DRIVER_PATH);
 			WebDriverManager.firefoxdriver().setup();
 			driver = new FirefoxDriver();
 			break;
