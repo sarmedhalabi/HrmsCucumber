@@ -16,7 +16,7 @@ import io.cucumber.junit.CucumberOptions;
 		
 "rerun:target/failed.txt"}// create basic html report in in specified location
           
-       // ,tags="smoke"
+        ,tags="Runner"
            
 
 )
