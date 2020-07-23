@@ -1,36 +1,41 @@
-$(document).ready(function() {var formatter = new CucumberHTML.DOMFormatter($('.cucumber-report'));formatter.uri("file:src/test/resources/features/nameValidationsinDB.feature");
+$(document).ready(function() {var formatter = new CucumberHTML.DOMFormatter($('.cucumber-report'));formatter.uri("file:src/test/resources/features/SearchEmployee.feature");
 formatter.feature({
-  "name": "Name validation against DB",
+  "name": "Employee Search",
   "description": "",
   "keyword": "Feature"
 });
 formatter.scenario({
-  "name": "First Name validation against DB",
+  "name": "Search employee by id",
   "description": "",
-  "keyword": "Scenario"
+  "keyword": "Scenario",
+  "tags": [
+    {
+      "name": "@Runner1"
+    }
+  ]
 });
 formatter.before({
-  "status": "skipped"
+  "status": "passed"
 });
 formatter.step({
-  "name": "I login successfully to the HRMS applicaiton.",
-  "keyword": "Given "
-});
-formatter.match({
-  "location": "com.hrms.steps.AddNewEmployee.i_login_successfully_to_the_HRMS_applicaiton()"
-});
-formatter.result({
-  "status": "skipped"
-});
-formatter.step({
-  "name": "navigate to the employee page and click on PIM",
+  "name": "user is logged with valid admin credentials",
   "keyword": "And "
 });
 formatter.match({
-  "location": "com.hrms.steps.AddNewEmployee.navigate_to_the_employee_page_and_click_on_PIM()"
+  "location": "com.hrms.steps.EmployeeSearchSteps.user_is_logged_with_valid_admin_credentials()"
 });
 formatter.result({
-  "status": "skipped"
+  "status": "passed"
+});
+formatter.step({
+  "name": "user navigate to employee list page",
+  "keyword": "And "
+});
+formatter.match({
+  "location": "com.hrms.steps.EmployeeSearchSteps.user_navigate_to_employee_list_page()"
+});
+formatter.result({
+  "status": "passed"
 });
 formatter.step({
   "name": "user enter Valid employee id",
@@ -40,7 +45,7 @@ formatter.match({
   "location": "com.hrms.steps.EmployeeSearchSteps.user_enter_Valid_employee_id()"
 });
 formatter.result({
-  "status": "skipped"
+  "status": "passed"
 });
 formatter.step({
   "name": "click on sarch button",
@@ -50,41 +55,20 @@ formatter.match({
   "location": "com.hrms.steps.EmployeeSearchSteps.click_on_sarch_button()"
 });
 formatter.result({
-  "status": "skipped"
+  "status": "passed"
 });
 formatter.step({
-  "name": "verify table is displayed",
+  "name": "user see employee information is displayed",
   "keyword": "Then "
 });
-formatter.match({});
+formatter.match({
+  "location": "com.hrms.steps.EmployeeSearchSteps.user_see_employee_information_is_displayed()"
+});
 formatter.result({
-  "status": "undefined"
+  "status": "passed"
 });
-formatter.step({
-  "name": "get first name from table",
-  "keyword": "And "
-});
-formatter.match({});
-formatter.result({
-  "status": "undefined"
-});
-formatter.step({
-  "name": "get first name  from db",
-  "keyword": "When "
-});
-formatter.match({});
-formatter.result({
-  "status": "undefined"
-});
-formatter.step({
-  "name": "validate first name from the ui against db",
-  "keyword": "Then "
-});
-formatter.match({});
-formatter.result({
-  "status": "undefined"
-});
+formatter.embedding("image/png", "embedded0.png", "Search employee by id");
 formatter.after({
-  "status": "skipped"
+  "status": "passed"
 });
 });

@@ -1,5 +1,5 @@
 Feature: Employee Search
-@Runner
+  @Runner1
   Scenario: Search employee by id
    
     And user is logged with valid admin credentials

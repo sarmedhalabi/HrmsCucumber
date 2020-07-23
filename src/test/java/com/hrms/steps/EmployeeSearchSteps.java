@@ -55,7 +55,7 @@ public class EmployeeSearchSteps extends CommonMethods {
 		String actualIdEmployee = viewEmp.employeeIdValdiaiton.getText();
 		Assert.assertEquals("IdEmployee do not match", actualIdEmployee, expectedIdEmployee);
 		sleep(2);
-		tearDown();
+		//tearDown();
 
 	}
 	
@@ -71,7 +71,7 @@ public class EmployeeSearchSteps extends CommonMethods {
 	  String expectedName="Adhikari";
 	  String actualLastName=viewEmp.empLastNameValdiation.getText();
 	  Assert.assertEquals("Names do not match",expectedName, actualLastName);
-	  tearDown();
+	  //tearDown();
 		
 	}
 	

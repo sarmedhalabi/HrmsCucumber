@@ -6,9 +6,9 @@ import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
 
 @RunWith(Cucumber.class)
-@CucumberOptions(features = "src/test/resources/features/nameValidationsinDB.feature"
+@CucumberOptions(features = "src/test/resources/features/"
            , glue = "com/hrms/steps"
-           , dryRun = true
+           , dryRun = false
            , monochrome = true
            , plugin = {
 		"pretty",                              // prints gharkin steps in console
@@ -16,7 +16,7 @@ import io.cucumber.junit.CucumberOptions;
 		
 "rerun:target/failed.txt"}// create basic html report in in specified location
           
-        ,tags="@Runner"
+        ,tags="@Runner1"
            
 
 )
